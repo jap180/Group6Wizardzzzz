@@ -23,3 +23,94 @@ Things to code:
 - Stats (spell/teleportation uses, health, cooldowns)
 - GameMaster (handle networking and other various things)
 
+
+
+THE FULL VISION FOR THE GAME: 		(which may only be partially implemented)
+
+SPELL CLASSES:
+There are four(4) classes of spells; three offensive, and one defensive.
+Hexes, Jinxes, Curses, and Counter-spells(defensive)
+Each kind of spell is color coded for recognizability:
+Hexes:		red
+Jinxes		blue
+Curses:		green
+Counter-spells:	yellow
+
+House bonuses:
+- Gryffindor:	Hexes
+- Ravenclaw:	Jinxes
+- Slytherin:	Curses
+- Hufflepuff:	counter-spells
+
+A wizard casting a spell will glow the color of the spell class during the duration of the casting period.
+
+Additionally, each spell class has certain differentiating mechanics/properties:
+
+Name		Damage	% to Cast	Accuracy	Cast Speed	Effects
+Hexes:		mid	mid		high		low		lingering dmg/slow/other is kinda common
+Jinxes		low	high		mid		mid		many powerful effects are very common
+Curses:		high	low		low		high		weak/rare
+Counter-spells:	none	super high	--(see below)	super high	negate offensive spell.
+
+Defensive spells have three tiers of operation: (which we may choose to only implement 1/2 of)
+
+Specific Spell Counter: The most difficult kind of defensive spell to use, as it requires perfect knowledge of the opponent's spell choice. Has a perfect cast percentage, has a near instantaneous cast timer, and provides a full 360 degree sheild around the player. Main drawback is it only negates one particular kind of spell the opponent might cast.
+Spell Class Counter: Less difficult to use, as it will negate any spell from an entire class of spells. Has a slightly lower cast success rate, slightly lower cast speed and only defends the front 180 degrees of the caster.
+General Counter: Very easy to use. Lowest defensive cast %(still significantly higher than offensive spells), and slowest cast time, and only a 90 degree sheild in front of the player.
+
+All defensive spells successfully cast remain active until either the player dies, or an opponent's offensive spell is negated by the sheild.
+
+CHARACTER DETAILS:		(unlikely to implement much of this)
+Each character has a house to which s/he belongs. The house grants buffs to a certain class of spell (as noted above). The character also has a some stats, which affect gameplay:
+STAMINA, which affects FOCUS (see below) and move speed
+INTELLIGENCE, which affects the success to cast % rate of all spells.
+INSTINCT, which affects cast speed.
+FINESSE, which affects accuracy.
+
+FOCUS is the 'mana' availabe to cast spells from. FOCUS regenerates at a rate dependant upon how much FOCUS remains. If the FOCUS bar is largely full, FOCUS regenerates rapidly. If it's nearly empty, it's going to stay that way for a while. All spells have an associated FOCUS cost, which is usually correlated with the power/quality of the spell. Additionally, running around and aparating cost FOCUS.
+
+ADDITONAL COMBAT NOTES:
+Players cast offensive spells by selecting the spell with the number keys, and left clicking. Upon clicking, the spell begins to cast, and a cast-progress bar appears on the HUD. When the bar fills up, the spell is cast, along whatever path the player is aiming at the time. Multiple spells canot be prepping to cast simeltaneously, excluding apparation. Spells are not perfectly accurate, so being closer to an opponent is more likely to result in a hit.
+
+Players cast defensive spells similarly to offensive spells, but with the difference being that upon cast, the sheild automatically appears and remains until it's hit. Aim is only relevant upon being hit by an opponent's spell.
+
+Players can apparate (teleport) at any time by right clicking. Holding down right click will display an indicator of where the player is going to appear, and releasing the click will teleport. Teleportation is instant. Teleports can be canceld by left clicking.
+
+The FOCUS bar appears in the top left and your HP appears in the top right. You don't know how much health your opponent has.
+
+Players move by WASD.
+
+Each player equips spells, up to three in each offensive class, and 3 specific counters in defense.
+
+SPELL SELECTION EXAMPLES:	(this may need to be simplified)
+1 = defense	2 = curse	3 = hex		4 = jinx
+
+Upon choosing '1':
+1 = general --> can cast
+2 = class   --> 2=curse, 3=hex, 4=jinx
+3 = specific--> 1=(equipped player spell 1) 2=... 3=...
+
+Upon choosing '2':
+1 = equipped player spell 1
+2 = equipped player spell 2
+3 = equipped player spell 3
+
+Thus:
+1 --> 1 --> click  =  cast general defensive spell.
+3 --> 2 --> click  =  cast second equipped hex spell.
+etcetera
+
+EXAMPLE SPELLS: (taken from harry potter wiki. stats are made up and likely to change)
+Curses:	
+	Avada Kedavra	(100dmg, 5%, very inaccurate, 2s)
+	Confringo 	(30dmg, 40%, inaccurate-ish, 3s)
+	Crucio		(50dmg, 20%, inaccurate-ish, 2.5s)
+Hexes:
+	Bat-Bogey Hex
+	Redactum Skullus
+	Hurling Hex
+Jinxes:
+	Cracker Jinx	(stuns target)
+	Jelly-Legs Jinx (slows target)
+	Flipendo 	(knockback jinx--knocks target back)
+	Langlock	(silences target)

@@ -1,0 +1,25 @@
+Group 6 Project 4 Design Doc
+
+- FPS/TPS/Action Game
+- Wizarding duel game
+- networking?
+- Hogwarts-themed?
+-- differing strengths/weaknesses per character?
+- Be able to choose different spells for different effects
+-- nuking
+-- a.o.e.
+-- d.o.t.
+-- c.c.
+-- rapid fire
+-- differing effects, damage, speed,
+-- defensive: shielding, reflecting, healing, sight (and other) disables
+- teleportation
+
+Things to code:
+- Player movement and other controls
+- Spells and effects
+- Networking
+- GUI/HUD/Introductory Screen
+- Stats (spell/teleportation uses, health, cooldowns)
+- GameMaster (handle networking and other various things)
+

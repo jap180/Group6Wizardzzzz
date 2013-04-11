@@ -26,6 +26,18 @@ Things to code:
 
 
 THE FULL VISION FOR THE GAME: 		(which may only be partially implemented)
+BASIC RULES:
+- Gravity is constant (unless modified by a spell)
+- Movement occurs by WASD
+- The goal is to defeat the opponent (make his/her HP = 0)
+- Spells depend on FOCUS
+- FOCUS regens over time(see below)
+- look with mouse
+- spells are not affected by gravity
+- possible terrain effects on strategy.
+- health bar, FOCUS bar, and casting bar appear on HUD
+- On one player's HP = 0, victory/defeat messages appear.
+
 
 SPELL CLASSES:
 There are four(4) classes of spells; three offensive, and one defensive.

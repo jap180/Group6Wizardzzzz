@@ -1,4 +1,4 @@
-Group 6 Project 4 Design Doc
+             Group 6 Project 4 Design Doc
 
 - FPS/TPS/Action Game
 - Wizarding duel game
@@ -47,6 +47,22 @@ PLAYER ACTIONS:
 - equip spells (at beginning of game)
 - choose house (at beginning)
 - Heal themselves
+
+MECHANICS:
+- Health bar drained, player dies
+- Offensive spells drain health on hit
+- All spells drain FOCUS on cast, including teleport
+- Spells travel like a projectile, take time to travel and have inaccuracy, but travel straight
+- Players can't go through each other
+- Spells don't always cast when attempted
+- Different spells do different amounts of damage
+- Spells can have effects (slow, stun, silence)
+- Teleport is based on line of sight
+- Terrain will stop a spell
+- Teleport will change player location instantly
+- Player can choose spells in real time
+- Only one spell of a class can be active at a time on a player
+- 
 
 SPELL CLASSES:
 There are four(4) classes of spells; three offensive, and one defensive.
@@ -122,15 +138,15 @@ Thus:
 etcetera
 
 EXAMPLE SPELLS: (taken from harry potter wiki. stats are made up and likely to change)
-Curses:	
+Curses (straight damage):	
 	Avada Kedavra	(100dmg, 5%, very inaccurate, 2s)
 	Confringo 	(30dmg, 40%, inaccurate-ish, 3s)
 	Crucio		(50dmg, 20%, inaccurate-ish, 2.5s)
-Hexes:
+Hexes (damage and effect):
 	Bat-Bogey Hex
 	Redactum Skullus
 	Hurling Hex
-Jinxes:
+Jinxes (effect):
 	Cracker Jinx	(stuns target)
 	Jelly-Legs Jinx (slows target)
 	Flipendo 	(knockback jinx--knocks target back)

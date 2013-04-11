@@ -51,11 +51,13 @@ public class Health : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Died this instance.
+	/// This entity is dead. 
+	/// Sends a message to tagged GameController.
+	/// Sets 'dead' true.
 	/// </summary>
 	void Died(){
 		dead = true;
 		GameObject.FindGameObjectWithTag("GameController").SendMessage("Died", gameObject); 					// to game master that you are dead so it can update Targets of other Units.
-		Destroy(gameObject);
+		//Destroy(gameObject);
 	}
 }

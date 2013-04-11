@@ -38,6 +38,15 @@ BASIC RULES:
 - health bar, FOCUS bar, and casting bar appear on HUD
 - On one player's HP = 0, victory/defeat messages appear.
 
+PLAYER ACTIONS:
+- Run/jump
+- Teleport
+- Cast spell
+- Take damage
+- start game
+- equip spells (at beginning of game)
+- choose house (at beginning)
+- Heal themselves
 
 SPELL CLASSES:
 There are four(4) classes of spells; three offensive, and one defensive.

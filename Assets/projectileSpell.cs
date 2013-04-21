@@ -5,20 +5,23 @@ public class projectileSpell : MonoBehaviour {
 	public float speed = 5;
 	public float spawnDistance = 1.0f;
 	public Rigidbody spell;
-	public GameObject HUD;
+	public GameObject PlayerStats;
+	public int focusValue;
+	public int focusCost = 10;
 	
 	// Use this for initialization
 	void Start () {
 	}
 	
 	void CastSpell () {
+	focusValue = focusValue - focusCost;
 	Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation);
 	spellClone.velocity = transform.forward * speed;
 	}
 	
 // Update is called once per frame
 	void Update () {
-	if(Input.GetKeyDown ("Alpha1")) {//Receive message from player control to cast spell
+	if(Input.GetKey (KeyCode.Alpha1)) {//Receive message from player control to cast spell
 		CastSpell();
 		}
 	}

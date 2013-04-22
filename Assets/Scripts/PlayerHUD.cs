@@ -21,6 +21,12 @@ public class PlayerHUD : MonoBehaviour {
 	public GameObject gameMaster;
 	public string gameMasterTag = "GameController";
 	
+	// Focus Fields
+	public PlayerStats playerStats;
+	public int currentFocus;
+	public int maxFocus;
+	public Texture2D focusBar;		// Need to set in editor.
+	
 	// Use this for initialization
 	void Start () {
 		// Make the rectangle in the center of the screen.
@@ -39,6 +45,10 @@ public class PlayerHUD : MonoBehaviour {
 		
 		// Initialize game master
 		gameMaster = GameObject.FindGameObjectWithTag(gameMasterTag);
+		
+		// Initialize the playerStats pointer.
+		playerStats = gameObject.GetComponent<PlayerStats>();
+		maxFocus = playerStats.startFocus;		// And set the maxFocus to the startFocus from playerStats.
 	}
 	
 	// Update is called once per frame
@@ -47,6 +57,10 @@ public class PlayerHUD : MonoBehaviour {
 
 	
 	void OnGUI(){
+		// Get current Focus
+		currentFocus = playerStats.getCurrentFocus();
+		GUI.Box(new Rect(0, 0, currentFocus, (Screen.height/7)), focusBar);
+		
 		// Draws the crosshair inside of the already created crosshairPosition
 		GUI.DrawTexture(crosshairPosition, crosshairTexture, ScaleMode.ScaleToFit, true, 0.0f);
 		

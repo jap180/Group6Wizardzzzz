@@ -28,6 +28,9 @@ public class PlayerHUD : MonoBehaviour {
 	public Texture2D focusBar;			// Need to set in editor.
 	public Texture2D focusBarOutline;	// Aslo need to set in editor.
 	
+	// Time trackers.
+	float runningTimeReset;
+	
 	// Use this for initialization
 	void Start () {
 		// Make the rectangle in the center of the screen.
@@ -58,15 +61,33 @@ public class PlayerHUD : MonoBehaviour {
 
 	
 	void OnGUI(){
+		DrawFocus();
+		
+		DrawCrosshair();
+		
+		DrawWand();
+	}
+	
+	/// <summary>
+	/// Draws the focus bar HUD stuff.
+	/// </summary>
+	void DrawFocus(){
 		// Get current Focus
 		currentFocus = playerStats.getCurrentFocus();
-		// Draw Focus bars.
+		// Draw Focus bar
 		GUI.DrawTexture(new Rect(0, 0, ((currentFocus/maxFocus)*Screen.width/4), (Screen.height/12)), focusBar); // Draw the blue, normalized by max length of width/4
 		GUI.DrawTexture(new Rect(0, 0, Screen.width/4, (Screen.height/12)), focusBarOutline);	// Draw the outline
-		
+	}
+	
+	/// <summary>
+	/// Draws the crosshair.
+	/// </summary>
+	void DrawCrosshair(){
 		// Draws the crosshair inside of the already created crosshairPosition
 		GUI.DrawTexture(crosshairPosition, crosshairTexture);
-		
+	}
+	
+	void DrawWand(){
 		// Draws the wand inside of the already created wandPosition
 		GUI.DrawTexture(wandPosition, wandTexture);
 	}

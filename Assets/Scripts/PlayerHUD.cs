@@ -25,7 +25,8 @@ public class PlayerHUD : MonoBehaviour {
 	public PlayerStats playerStats;
 	public int currentFocus;
 	public int maxFocus;
-	public Texture2D focusBar;		// Need to set in editor.
+	public Texture2D focusBar;			// Need to set in editor.
+	public Texture2D focusBarOutline;	// Aslo need to set in editor.
 	
 	// Use this for initialization
 	void Start () {
@@ -38,10 +39,10 @@ public class PlayerHUD : MonoBehaviour {
 				
 		// Make the wand rectangle in the right corner of the screen.
 		wandPosition = new Rect(
-				(Screen.width/2),
-				(Screen.height/2), 
-				Screen.width, 
-				Screen.height);
+				(3*Screen.width/5),
+				(3*Screen.height/5),
+				Screen.width-1000, 
+				Screen.height-400);		// 60 is the bottom corner offset
 		
 		// Initialize game master
 		gameMaster = GameObject.FindGameObjectWithTag(gameMasterTag);
@@ -59,12 +60,14 @@ public class PlayerHUD : MonoBehaviour {
 	void OnGUI(){
 		// Get current Focus
 		currentFocus = playerStats.getCurrentFocus();
-		GUI.DrawTexture(new Rect(0, 0, currentFocus, (Screen.height/12)), focusBar);
+		// Draw Focus bars.
+		GUI.DrawTexture(new Rect(0, 0, ((currentFocus/maxFocus)*Screen.width/4), (Screen.height/12)), focusBar); // Draw the blue, normalized by max length of width/4
+		GUI.DrawTexture(new Rect(0, 0, Screen.width/4, (Screen.height/12)), focusBarOutline);	// Draw the outline
 		
 		// Draws the crosshair inside of the already created crosshairPosition
-		GUI.DrawTexture(crosshairPosition, crosshairTexture, ScaleMode.ScaleToFit, true, 0.0f);
+		GUI.DrawTexture(crosshairPosition, crosshairTexture);
 		
 		// Draws the wand inside of the already created wandPosition
-		GUI.DrawTexture(wandPosition, wandTexture, ScaleMode.ScaleToFit, true, 0.0f);
+		GUI.DrawTexture(wandPosition, wandTexture);
 	}
 }

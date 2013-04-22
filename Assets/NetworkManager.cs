@@ -3,6 +3,9 @@ using System.Collections;
 
 public class NetworkManager: MonoBehaviour{
 	
+	public GameObject playerPrefab;
+	public Transform spawnObject;
+	
 	float buttonX;
 	float buttonY;
 	float buttonW;
@@ -46,8 +49,17 @@ public class NetworkManager: MonoBehaviour{
 		refreshing = true;
 	}
 	
+	void spawnPlayer(){
+		Network.Instantiate(playerPrefab, spawnObject.position, Quaternion.identity, 0);	
+	}
+	
 	void OnServerInitialized(){
 		Debug.Log("Server Initialized");	
+		spawnPlayer();
+	}
+	
+	void OnConnectedToServer(){
+		spawnPlayer();	
 	}
 	
 	void OnMasterServerEvent(MasterServerEvent mse){

@@ -59,7 +59,7 @@ public class PlayerHUD : MonoBehaviour {
 	void OnGUI(){
 		// Get current Focus
 		currentFocus = playerStats.getCurrentFocus();
-		GUI.Box(new Rect(0, 0, currentFocus, (Screen.height/7)), focusBar);
+		GUI.DrawTexture(new Rect(0, 0, currentFocus, (Screen.height/12)), focusBar);
 		
 		// Draws the crosshair inside of the already created crosshairPosition
 		GUI.DrawTexture(crosshairPosition, crosshairTexture, ScaleMode.ScaleToFit, true, 0.0f);

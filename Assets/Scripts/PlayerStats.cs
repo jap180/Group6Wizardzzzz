@@ -88,4 +88,24 @@ public class PlayerStats : MonoBehaviour {
 		else
 			currentFocus = (int)tempFocus;
 	}
+	
+	/// <summary>
+	/// Reduces the focus by reduceAmount.
+	/// </summary>
+	/// <param name='reduceAmount'>
+	/// The amount to reduce the Focus by.
+	/// </param>
+	public void ReduceFocus(int reduceAmount){
+		currentFocus = currentFocus - reduceAmount;
+	}
+	
+	/// <summary>
+	/// Gets the current focus.
+	/// </summary>
+	/// <returns>
+	/// The current focus.
+	/// </returns>
+	public int getCurrentFocus(){
+		return currentFocus;
+	}
 }

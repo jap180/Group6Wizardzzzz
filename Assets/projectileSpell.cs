@@ -2,9 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 public class projectileSpell : MonoBehaviour {
-	public float speed = 5;
-	public float spawnDistance = 1.0f;
-	public Rigidbody spell;
+	public float speed = 5; //Movement speed of the spell
+	public GameObject spell;
 	public GameObject PlayerStats;
 	public int focusValue;
 	public int focusCost = 10;
@@ -16,7 +15,7 @@ public class projectileSpell : MonoBehaviour {
 	void CastSpell () {
 	focusValue = focusValue - focusCost; //Reduce focus resource
 	Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation);
-	spellClone.velocity = transform.forward * speed;
+	spellClone.velocity = Camera.main.transform.forward * speed;
 	}
 	
 // Update is called once per frame

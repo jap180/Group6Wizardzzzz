@@ -95,8 +95,14 @@ public class PlayerStats : MonoBehaviour {
 	/// <param name='reduceAmount'>
 	/// The amount to reduce the Focus by.
 	/// </param>
-	public void ReduceFocus(int reduceAmount){
-		currentFocus = currentFocus - reduceAmount;
+	public bool ReduceFocus(int reduceAmount){
+		if(currentFocus - reduceAmount <= 0){
+			return false;
+		}
+		else{
+			currentFocus = currentFocus - reduceAmount;
+			return true;
+		}
 	}
 	
 	/// <summary>

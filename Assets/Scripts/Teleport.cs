@@ -60,8 +60,10 @@ public class Teleport : MonoBehaviour {
 	}
 	
 	public void TeleportToLocation(Vector3 pos){
-		Vector3 tempPos = new Vector3(pos.x, (pos.y + (gameObject.GetComponent<CharacterController>().height/2)+0.001f), pos.z);
-		gameObject.transform.position = tempPos;
-		gameObject.GetComponent<PlayerStats>().SendMessage("ReduceFocus", teleportFocusCost);
+		bool canTeleport = gameObject.GetComponent<PlayerStats>().ReduceFocus(teleportFocusCost);
+		if (canTeleport){
+			Vector3 tempPos = new Vector3(pos.x, (pos.y + (gameObject.GetComponent<CharacterController>().height/2)+0.001f), pos.z);
+			gameObject.transform.position = tempPos;
+		}
 	}
 }

@@ -80,13 +80,13 @@ public class PlayerStats : MonoBehaviour {
 	/// Regens the focus based on the regenFactor
 	/// </summary>
 	void regenFocus(float t){
-		float addAmount = t * regenFactor * (currentFocus/startFocus);
+		float temp = (2*(float)currentFocus)/((float)startFocus);
+		float addAmount = t * regenFactor * (temp);
 		float tempFocus = currentFocus + addAmount;
 		if (tempFocus > startFocus){
 			tempFocus = startFocus;
 		}
-		else
-			currentFocus = (int)tempFocus;
+		currentFocus = (int)tempFocus;
 	}
 	
 	/// <summary>

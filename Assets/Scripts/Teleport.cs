@@ -8,8 +8,10 @@ public class Teleport : MonoBehaviour {
 	
 	public string terrainTag = "Terrain";	// The tag of the ground
 	public string imagePrefabName = "teleportImage";
-	public GameObject instanceOfImage;
-	public bool imageExists = false;
+	public int teleportFocusCost = 50;
+	
+	GameObject instanceOfImage;
+	bool imageExists = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -60,5 +62,6 @@ public class Teleport : MonoBehaviour {
 	public void TeleportToLocation(Vector3 pos){
 		Vector3 tempPos = new Vector3(pos.x, (pos.y + (gameObject.GetComponent<CharacterController>().height/2)+0.001f), pos.z);
 		gameObject.transform.position = tempPos;
+		gameObject.GetComponent<PlayerStats>().SendMessage("ReduceFocus", teleportFocusCost);
 	}
 }

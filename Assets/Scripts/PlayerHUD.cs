@@ -17,6 +17,11 @@ public class PlayerHUD : MonoBehaviour {
 	// Wand Fields
 	public Texture2D wandTexture;
 	Rect wandPosition;
+	public Texture2D wandTexture4;		// Wand frames for running animation
+	public Texture2D wandTexture3;		// Must set these in editor
+	public Texture2D wandTexture2;
+	public Texture2D wandTexture1;
+	
 	
 	public GameObject gameMaster;
 	public string gameMasterTag = "GameController";
@@ -29,7 +34,11 @@ public class PlayerHUD : MonoBehaviour {
 	public Texture2D focusBarOutline;	// Aslo need to set in editor.
 	
 	// Time trackers.
-	float runningTimeReset;
+	float runningTimeStart;
+	
+	// Movement trackers.
+	bool running 	= 	false;
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -87,8 +96,47 @@ public class PlayerHUD : MonoBehaviour {
 		GUI.DrawTexture(crosshairPosition, crosshairTexture);
 	}
 	
+	/// <summary>
+	/// Draws the wand.
+	/// Decides whether to draw animated wand or static wand.
+	/// </summary>
 	void DrawWand(){
-		// Draws the wand inside of the already created wandPosition
-		GUI.DrawTexture(wandPosition, wandTexture);
+		// Preliminary calcs to determine movement information.
+		if (Input.anyKey && !running){
+			running = true;
+			runningTimeStart = Time.time;
+		}
+		else if(!Input.anyKey){
+			running = false;
+		}
+		// Drawing if-set to determine what kind of wand drawing scheme to use.
+		if(!running){
+			// Draws the static wand
+			// Draws the wand inside of the already created wandPosition
+			GUI.DrawTexture(wandPosition, wandTexture);
+		}
+		else{
+			// draw last frame
+			if(Time.time > (runningTimeStart+1.0f)){
+				GUI.DrawTexture(wandPosition, wandTexture4);
+				runningTimeStart = Time.time;
+			}
+			// draw 2nd to last frame
+			else if(Time.time > (runningTimeStart+0.7f)){
+				GUI.DrawTexture(wandPosition, wandTexture3);
+			}
+			// draw 3rd to last frame
+			else if(Time.time > (runningTimeStart+0.5f)){
+				GUI.DrawTexture(wandPosition, wandTexture2);
+			}
+			// draw 1st frame
+			else if(Time.time > (runningTimeStart+0.2f)){
+				GUI.DrawTexture(wandPosition, wandTexture1);
+			}
+			else{
+				GUI.DrawTexture(wandPosition, wandTexture);
+			}
+		}
+			
 	}
 }

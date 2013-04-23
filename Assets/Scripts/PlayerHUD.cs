@@ -42,6 +42,7 @@ public class PlayerHUD : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		Screen.lockCursor = true;
 		// Make the rectangle in the center of the screen.
 		crosshairPosition = new Rect(
 				((Screen.width - crosshairTexture.width)/2),

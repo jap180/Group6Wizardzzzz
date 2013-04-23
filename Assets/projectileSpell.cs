@@ -14,7 +14,7 @@ public class projectileSpell : MonoBehaviour {
 	}
 	
 	void CastSpell () {
-	focusValue = focusValue - focusCost;
+	focusValue = focusValue - focusCost; //Reduce focus resource
 	Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation);
 	spellClone.velocity = transform.forward * speed;
 	}

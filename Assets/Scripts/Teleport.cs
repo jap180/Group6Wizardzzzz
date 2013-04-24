@@ -1,5 +1,7 @@
 /// <summary>
 /// Teleportation functionality. Methods should be called by Input handler.
+/// 
+/// By Daniel Zapata
 /// </summary>
 using UnityEngine;
 using System.Collections;

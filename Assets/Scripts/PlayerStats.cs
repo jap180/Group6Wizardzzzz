@@ -82,7 +82,7 @@ public class PlayerStats : MonoBehaviour {
 	/// Regens the focus based on the regenFactor
 	/// </summary>
 	void regenFocus(float t){
-		float temp = (2*(float)currentFocus)/((float)startFocus);
+		float temp = ((float)currentFocus)/((float)startFocus);
 		float addAmount = t * regenFactor * (temp);
 		if (addAmount < 1) { 
 			addAmount = 1; //Keeps Focus regen from stagnating at low values - JAP

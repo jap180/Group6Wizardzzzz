@@ -12,24 +12,25 @@ public class projectileSpell : MonoBehaviour {
 		playerStats = gameObject.GetComponent<PlayerStats>(); //Point at the PlayerStats script to get values needed
 	}
 	
-<<<<<<< HEAD
+// <<<<<<< HEAD
+	/*public void CastSpell () {
+		focusValue = focusValue - focusCost; //Reduce focus resource
+		Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation);
+		spellClone.velocity = Camera.main.transform.forward * speed;
+	}
+//=======*/
 	public void CastSpell () {
-	focusValue = focusValue - focusCost; //Reduce focus resource
-	Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation);
-	spellClone.velocity = Camera.main.transform.forward * speed;
-=======
-	void CastSpell () {
-	playerStats.currentFocus = playerStats.currentFocus - focusCost; //Reduce focus resource
-	Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation); //Create the spell moving
+		playerStats.currentFocus = playerStats.currentFocus - focusCost; //Reduce focus resource
+		Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation); //Create the spell moving
 	spellClone.velocity = Camera.main.transform.forward * speed; //Send spell outward from camera
->>>>>>> Obtain the Focus from PlayerStats
+//>>>>>>> Obtain the Focus from PlayerStats
 	}
 	
 // Update is called once per frame
 	void Update () {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		
-=======
+//=======
 	if(Input.GetKey (KeyCode.Alpha1)) {//Receive message from player control to cast spell
 		if (playerStats.currentFocus >= focusCost) { //If the player has enough focus to cast the spell and casts it if they do
 			CastSpell();
@@ -39,6 +40,6 @@ public class projectileSpell : MonoBehaviour {
 			SendMessage("NeedFocus");
 		}
 		}
->>>>>>> Obtain the Focus from PlayerStats
+//>>>>>>> Obtain the Focus from PlayerStats
 	}
 }

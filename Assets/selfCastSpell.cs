@@ -6,11 +6,12 @@ public class selfCastSpell : MonoBehaviour {
 	//public GameObject PlayerStats;
 	public int protectionValue;
 	public int protectionUp;
-	public int focusValue;
-	public int focusCost = 5;
+	public int focusCost = 50;
+	public PlayerStats playerStats;
 
 	// Use this for initialization
 	void Start () {
+<<<<<<< HEAD
 		//PlayerStats = GameObject.Find("PlayerStats");
 	
 	}
@@ -25,10 +26,31 @@ public class selfCastSpell : MonoBehaviour {
 			stats.GainHealth(20);
 		}
 			
+=======
+		playerStats = gameObject.GetComponent<PlayerStats>(); //Point at the PlayerStats script to get values needed
+	
+	}
+	void CastSelfSpell() {
+		playerStats.currentFocus = playerStats.currentFocus - focusCost; //Reduce focus resource
+		protectionValue = protectionUp + protectionValue;
+>>>>>>> Obtain the Focus from PlayerStats
 	}
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
 		
+=======
+		if(Input.GetKey (KeyCode.Alpha2)) {//Receive message from player control to cast spell
+			if(playerStats.currentFocus >= focusCost) {
+			CastSelfSpell();
+			SendMessage("SpellCast");
+			}
+			else {
+				SendMessage("NeedFocus");
+			}
+		}
+	
+>>>>>>> Obtain the Focus from PlayerStats
 	}
 }

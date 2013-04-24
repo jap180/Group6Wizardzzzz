@@ -20,21 +20,7 @@ public class Teleport : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift)){
-			if(imageExists){
-				/*Destroy(instanceOfImage);
-				CreateTeleportImage();*/
-				MoveTeleportImage();
-			}
-			else
-				CreateTeleportImage();
-			
-		}
-		if(Input.GetMouseButtonUp(0) && imageExists){ // If clicking on wall, image doesn't appear and crashes - JAP
-			TeleportToLocation(instanceOfImage.transform.position);
-			Destroy(instanceOfImage);
-			imageExists = false;
-		}
+		
 	}
 	
 	public void CreateTeleportImage(){
@@ -65,5 +51,21 @@ public class Teleport : MonoBehaviour {
 			Vector3 tempPos = new Vector3(pos.x, (pos.y + (gameObject.GetComponent<CharacterController>().height/2)+0.001f), pos.z);
 			gameObject.transform.position = tempPos;
 		}
+	}
+	
+	public bool Image() {
+		return imageExists;
+	}
+	
+	public void SetImage(bool b) {
+		imageExists = b;
+	}
+	
+	public GameObject GetImage() {
+		return instanceOfImage;
+	}
+	
+	public void DestroyImage() {
+		Destroy(instanceOfImage);
 	}
 }

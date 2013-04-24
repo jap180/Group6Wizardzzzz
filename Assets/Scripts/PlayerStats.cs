@@ -82,7 +82,9 @@ public class PlayerStats : MonoBehaviour {
 	void regenFocus(float t){
 		float temp = (2*(float)currentFocus)/((float)startFocus);
 		float addAmount = t * regenFactor * (temp);
-		float tempFocus = currentFocus + addAmount;
+		if (addAmount < 1) { 
+			addAmount = 1; //Keeps Focus regen from stagnating at low values - JAP
+		} float tempFocus = currentFocus + addAmount;
 		if (tempFocus > startFocus){
 			tempFocus = startFocus;
 		}

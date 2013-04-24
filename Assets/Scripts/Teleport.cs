@@ -20,7 +20,7 @@ public class Teleport : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButton(1)){
+		if(Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift)){
 			if(imageExists){
 				/*Destroy(instanceOfImage);
 				CreateTeleportImage();*/
@@ -30,7 +30,7 @@ public class Teleport : MonoBehaviour {
 				CreateTeleportImage();
 			
 		}
-		if(Input.GetMouseButtonUp(1)){
+		if(Input.GetMouseButtonUp(0) && imageExists){ // If clicking on wall, image doesn't appear and crashes - JAP
 			TeleportToLocation(instanceOfImage.transform.position);
 			Destroy(instanceOfImage);
 			imageExists = false;

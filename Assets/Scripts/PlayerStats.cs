@@ -61,8 +61,10 @@ public class PlayerStats : MonoBehaviour {
 	/// <param name='healAmount'>
 	/// Heal amount.
 	/// </param>
-	void GainHealth(int healAmount){
+	public void GainHealth(int healAmount){
 		health += healAmount;
+		if (health > startHealth)
+			health = startHealth;
 	}
 	
 	/// <summary>

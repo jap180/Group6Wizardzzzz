@@ -8,7 +8,7 @@ public class Teleport : MonoBehaviour {
 	
 	public string terrainTag = "Terrain";	// The tag of the ground
 	public string imagePrefabName = "teleportImage";
-	public int teleportFocusCost = 50;
+	public int teleportFocusCost = 300;
 	
 	GameObject instanceOfImage;
 	bool imageExists = false;

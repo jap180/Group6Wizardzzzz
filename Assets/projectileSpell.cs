@@ -12,7 +12,7 @@ public class projectileSpell : MonoBehaviour {
 	void Start () {
 	}
 	
-	void CastSpell () {
+	public void CastSpell () {
 	focusValue = focusValue - focusCost; //Reduce focus resource
 	Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation);
 	spellClone.velocity = Camera.main.transform.forward * speed;
@@ -20,9 +20,7 @@ public class projectileSpell : MonoBehaviour {
 	
 // Update is called once per frame
 	void Update () {
-	if(Input.GetKey (KeyCode.Alpha1)) {//Receive message from player control to cast spell
-		CastSpell();
-		}
+		
 	}
 }
 

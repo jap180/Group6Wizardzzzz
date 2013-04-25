@@ -181,6 +181,7 @@ function Awake () {
 }
 
 private function UpdateFunction () {
+	if(networkView.isMine){
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
@@ -306,9 +307,11 @@ private function UpdateFunction () {
         movingPlatform.activeGlobalRotation = tr.rotation;
         movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation; 
 	}
+	}
 }
 
 function FixedUpdate () {
+	if(networkView.isMine){
 	if (movingPlatform.enabled) {
 		if (movingPlatform.activePlatform != null) {
 			if (!movingPlatform.newPlatform) {
@@ -325,6 +328,7 @@ function FixedUpdate () {
 		else {
 			movingPlatform.platformVelocity = Vector3.zero;	
 		}
+	}
 	}
 	
 	if (useFixedUpdate)

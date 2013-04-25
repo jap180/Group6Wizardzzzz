@@ -33,6 +33,11 @@ public class PlayerHUD : MonoBehaviour {
 	public Texture2D focusBar;			// Need to set in editor.
 	public Texture2D focusBarOutline;	// Aslo need to set in editor.
 	
+	// Health
+	public int currentHealth;
+	public int maxHealth = 100;
+	public Texture2D healthBar;		// Set in editor
+	
 	// Time trackers.
 	float runningTimeStart;
 	
@@ -76,6 +81,8 @@ public class PlayerHUD : MonoBehaviour {
 		DrawCrosshair();
 		
 		DrawWand();
+		
+		DrawHealth();
 	}
 	
 	/// <summary>
@@ -88,6 +95,18 @@ public class PlayerHUD : MonoBehaviour {
 		// Draw Focus bar
 		GUI.DrawTexture(new Rect(0, 0, ((temp)*(Screen.width/4)), (Screen.height/12)), focusBar); // Draw the blue, normalized by max length of width/4
 		GUI.DrawTexture(new Rect(0, 0, Screen.width/4, (Screen.height/12)), focusBarOutline);	// Draw the outline
+	}
+	
+	/// <summary>
+	/// Draws the health bar HUD stuff.
+	/// </summary>
+	void DrawHealth(){
+		// Get current Focus
+		currentHealth = playerStats.getCurrentHealth();
+		float temp = ((float)currentHealth)/((float)maxHealth);
+		// Draw Focus bar
+		GUI.DrawTexture(new Rect((3*Screen.width)/4, 0, ((3*Screen.width)/4)+((temp)*(Screen.width/4)), (Screen.height/12)), healthBar); // Draw the blue, normalized by max length of width/4
+		GUI.DrawTexture(new Rect((3*Screen.width)/4, 0, Screen.width, (Screen.height/12)), focusBarOutline);	// Draw the outline
 	}
 	
 	/// <summary>

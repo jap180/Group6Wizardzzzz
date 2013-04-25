@@ -67,6 +67,10 @@ public class PlayerStats : MonoBehaviour {
 			health = startHealth;
 	}
 	
+	public int GetCurrentHealth(){
+		return health;
+	}
+	
 	/// <summary>
 	/// This entity is dead. 
 	/// Sends a message to tagged GameController.

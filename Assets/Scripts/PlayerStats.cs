@@ -84,7 +84,8 @@ public class PlayerStats : MonoBehaviour {
 	void regenFocus(float t){
 		float temp = ((float)currentFocus)/((float)startFocus);
 		float addAmount = t * regenFactor * (temp);
-		// The whole point is that mana stagnates at low mana.
+		if (addAmount < 1)
+			addAmount = 1;
 		float tempFocus = currentFocus + addAmount;
 		// Prevent focus from exceeding maximum (max  = startFocus)
 		if (tempFocus > startFocus){

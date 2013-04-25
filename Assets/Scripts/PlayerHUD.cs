@@ -102,7 +102,7 @@ public class PlayerHUD : MonoBehaviour {
 	/// </summary>
 	void DrawHealth(){
 		// Get current Focus
-		currentHealth = playerStats.getCurrentHealth();
+		currentHealth = playerStats.GetCurrentHealth();
 		float temp = ((float)currentHealth)/((float)maxHealth);
 		// Draw Focus bar
 		GUI.DrawTexture(new Rect((3*Screen.width)/4, 0, ((3*Screen.width)/4)+((temp)*(Screen.width/4)), (Screen.height/12)), healthBar); // Draw the blue, normalized by max length of width/4

@@ -4,6 +4,7 @@ using System.Collections;
 public class NetworkManager: MonoBehaviour{
 	
 	public GameObject playerPrefab;
+	public GameObject playerPrefab2;
 	public Transform spawnObject1;
 	public Transform spawnObject2;
 	
@@ -55,9 +56,14 @@ public class NetworkManager: MonoBehaviour{
 		Debug.Log("Spawned a player");
 	}
 	
+	void spawnPlayerServer(Transform spawnObject){
+		Network.Instantiate(playerPrefab2, spawnObject.position, Quaternion.identity, 0);	
+		Debug.Log("Spawned a player");
+	}
+	
 	void OnServerInitialized(){
 		Debug.Log("Server Initialized");	
-		spawnPlayer(spawnObject1);
+		spawnPlayerServer(spawnObject1);
 	}
 	
 	void OnConnectedToServer(){

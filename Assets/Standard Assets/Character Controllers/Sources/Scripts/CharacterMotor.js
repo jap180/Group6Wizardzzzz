@@ -181,7 +181,7 @@ function Awake () {
 }
 
 private function UpdateFunction () {
-	if(networkView.isMine){
+	if(!networkView.isMine){
 	// We copy the actual velocity into a temporary variable that we can manipulate.
 	var velocity : Vector3 = movement.velocity;
 	
@@ -311,7 +311,7 @@ private function UpdateFunction () {
 }
 
 function FixedUpdate () {
-	if(networkView.isMine){
+	if(!networkView.isMine){
 	if (movingPlatform.enabled) {
 		if (movingPlatform.activePlatform != null) {
 			if (!movingPlatform.newPlatform) {

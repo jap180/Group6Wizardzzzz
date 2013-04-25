@@ -51,6 +51,7 @@ public class NetworkManager: MonoBehaviour{
 	
 	void spawnPlayer(){
 		Network.Instantiate(playerPrefab, spawnObject.position, Quaternion.identity, 0);	
+		Debug.Log("Spawned a player");
 	}
 	
 	void OnServerInitialized(){
@@ -59,7 +60,9 @@ public class NetworkManager: MonoBehaviour{
 	}
 	
 	void OnConnectedToServer(){
-		spawnPlayer();	
+		Debug.Log ("CONNECTED!");
+		spawnPlayer();
+		Debug.Log("Player should be spawned");
 	}
 	
 	void OnMasterServerEvent(MasterServerEvent mse){

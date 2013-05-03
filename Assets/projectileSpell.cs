@@ -8,7 +8,8 @@ public class projectileSpell : MonoBehaviour {
 	public PlayerStats playerStats; //The stats - JAP
 	public GameObject spellClone; //The spell clone - JAP
 	public GameObject caster; //The character that casts the spell - JAP
-	public Vector3 spawnpoint;
+	public Vector3 spawnpoint; //The spell's spawn location - JAP
+	public float radian;
 	
 	// Use this for initialization
 	void Start () {
@@ -26,13 +27,13 @@ public class projectileSpell : MonoBehaviour {
 	public void CastSpell () {
 		spellClone = Instantiate(spell, transform.position, transform.rotation) as GameObject; //Create the spell moving
 		spellClone.rigidbody.position = spawnpoint;
-		spellClone.rigidbody.velocity = new Vector3(Camera.main.transform.forward.x, caster.transform.rotation.y, Camera.main.transform.forward.z) * speed; //Send spell outward from camera
+		spellClone.rigidbody.velocity = new Vector3(Mathf.Cos(radian), Camera.main.transform.forward.y, (float) Mathf.Sin(radian)) * speed; //Send spell outward from camera
 	}
 	
 // Update is called once per frame
 	void Update () {
 //<<<<<<< HEAD
-		
+		radian = (float) 2f * Mathf.PI * caster.transform.rotation.y;
 		spawnpoint = new Vector3(caster.transform.position.x, 3, caster.transform.position.z); //sets the spawnpoint for a spell - JAP
 //=======
 	if(Input.GetKey (KeyCode.Alpha1)) {//Receive message from player control to cast spell

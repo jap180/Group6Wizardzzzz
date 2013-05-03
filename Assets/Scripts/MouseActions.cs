@@ -16,14 +16,18 @@ public class MouseActions : MonoBehaviour {
 	// Use this for initialization
 	void Start () {	
 		spell1 =  GameObject.FindWithTag("spell" + stats.playerNumber).GetComponent<projectileSpell>();
+		spell1.caster = GameObject.FindWithTag("player" + stats.playerNumber);
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
 		//Left Click - Offensive Spell
-		if(Input.GetMouseButtonDown(0) && !(Input.GetKey(KeyCode.LeftShift)))
-			spell1.CastSpell();
+		if(Input.GetMouseButtonDown(0) && !(Input.GetKey(KeyCode.LeftShift))) {
+			if (stats.ReduceFocus(spell1.focusCost)) 
+				spell1.CastSpell();
+		}
 		
 		//Right Click - Defensive Spell
 		if(Input.GetMouseButtonDown(1))

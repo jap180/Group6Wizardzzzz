@@ -5,14 +5,14 @@ public class projectileSpell : MonoBehaviour {
 	public float speed = 5; //Movement speed of the spell
 	public GameObject spell; //The object to be instantiated
 	public int focusCost = 50; //The cost of the spell to cast it
-	public PlayerStats playerStats;
-	public MouseActions mouseActions;
-	public GameObject spellClone;
+	public PlayerStats playerStats; //The stats - JAP
+	public GameObject spellClone; //The spell clone - JAP
+	public GameObject caster; //The character that casts the spell - JAP
+	public Vector3 spawnpoint;
 	
 	// Use this for initialization
 	void Start () {
 		playerStats = gameObject.GetComponent<PlayerStats>(); //Point at the PlayerStats script to get values needed
-		mouseActions = gameObject.GetComponent<MouseActions>();
 	}
 	
 // <<<<<<< HEAD
@@ -24,17 +24,16 @@ public class projectileSpell : MonoBehaviour {
 //=======*/
 	//Fixed - JAP
 	public void CastSpell () {
-		//playerStats.currentFocus = playerStats.currentFocus - focusCost; //Reduce focus resource
 		spellClone = Instantiate(spell, transform.position, transform.rotation) as GameObject; //Create the spell moving
-		spellClone.rigidbody.position = Camera.main.transform.position;
-		spellClone.rigidbody.velocity = Camera.main.transform.forward * speed; //Send spell outward from camera
-//>>>>>>> Obtain the Focus from PlayerStats
+		spellClone.rigidbody.position = spawnpoint;
+		spellClone.rigidbody.velocity = new Vector3(Camera.main.transform.forward.x, caster.transform.rotation.y, Camera.main.transform.forward.z) * speed; //Send spell outward from camera
 	}
 	
 // Update is called once per frame
 	void Update () {
 //<<<<<<< HEAD
 		
+		spawnpoint = new Vector3(caster.transform.position.x, 3, caster.transform.position.z); //sets the spawnpoint for a spell - JAP
 //=======
 	if(Input.GetKey (KeyCode.Alpha1)) {//Receive message from player control to cast spell
 		if (playerStats.currentFocus >= focusCost) { //If the player has enough focus to cast the spell and casts it if they do

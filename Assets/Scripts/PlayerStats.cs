@@ -25,6 +25,7 @@ public class PlayerStats : MonoBehaviour {
 	public int startFocus	=	1000;			// Initial Focus amount, and maximum focus amount.
 	public int regenFactor	=	100;			// Used to calculate how quickly the Focus regenerates.
 												// = amount of Focus to regen in 1 second, when focus is full.
+	public int playerNumber = 0;				// Used to determine who fires spells - JAP
 	
 	// Use this for initialization
 	void Start () {
@@ -123,4 +124,9 @@ public class PlayerStats : MonoBehaviour {
 	public int getCurrentFocus(){
 		return currentFocus;
 	}
+	
+	public void SetPlayerNumber (int i) {
+		playerNumber = i;
+	}
+	
 }

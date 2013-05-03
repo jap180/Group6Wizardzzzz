@@ -11,9 +11,11 @@ public class MouseActions : MonoBehaviour {
 	public projectileSpell spell1;
 	public selfCastSpell spell2;
 	public string defSpell = "Protect";
+	public PlayerStats stats;
 	
 	// Use this for initialization
 	void Start () {	
+		spell1 =  GameObject.FindWithTag("spell" + stats.playerNumber).GetComponent<projectileSpell>();
 	
 	}
 	

@@ -6,10 +6,13 @@ public class projectileSpell : MonoBehaviour {
 	public GameObject spell; //The object to be instantiated
 	public int focusCost = 50; //The cost of the spell to cast it
 	public PlayerStats playerStats;
+	public MouseActions mouseActions;
+	public GameObject spellClone;
 	
 	// Use this for initialization
 	void Start () {
 		playerStats = gameObject.GetComponent<PlayerStats>(); //Point at the PlayerStats script to get values needed
+		mouseActions = gameObject.GetComponent<MouseActions>();
 	}
 	
 // <<<<<<< HEAD
@@ -19,10 +22,12 @@ public class projectileSpell : MonoBehaviour {
 		spellClone.velocity = Camera.main.transform.forward * speed;
 	}
 //=======*/
+	//Fixed - JAP
 	public void CastSpell () {
-		playerStats.currentFocus = playerStats.currentFocus - focusCost; //Reduce focus resource
-		Rigidbody spellClone = (Rigidbody) Instantiate(spell, transform.position, transform.rotation); //Create the spell moving
-	spellClone.velocity = Camera.main.transform.forward * speed; //Send spell outward from camera
+		//playerStats.currentFocus = playerStats.currentFocus - focusCost; //Reduce focus resource
+		spellClone = Instantiate(spell, transform.position, transform.rotation) as GameObject; //Create the spell moving
+		spellClone.rigidbody.position = Camera.main.transform.position;
+		spellClone.rigidbody.velocity = Camera.main.transform.forward * speed; //Send spell outward from camera
 //>>>>>>> Obtain the Focus from PlayerStats
 	}
 	
@@ -42,4 +47,14 @@ public class projectileSpell : MonoBehaviour {
 		}
 //>>>>>>> Obtain the Focus from PlayerStats
 	}
+	
+	
+	//JAP
+	void OnCollision (Collider c) {
+		if (!c.tag.Equals("player" + playerStats.playerNumber)) {
+			c.GetComponent<PlayerStats>().TakeDamage(100);
+		}
+		Destroy(spellClone);
+	}
+	
 }

@@ -1,3 +1,8 @@
+/// <summary>
+/// Network manager. This code enables 2 players to be in a dueling arena at once.	
+/// </summary>
+/// 
+
 using UnityEngine;
 using System.Collections;
 
@@ -7,6 +12,9 @@ public class NetworkManager: MonoBehaviour{
 	public GameObject playerPrefab2;
 	public Transform spawnObject1;
 	public Transform spawnObject2;
+	
+	bool keep;
+	string nameOfGame = "Name your game here";
 	
 	float buttonX;
 	float buttonY;
@@ -23,6 +31,8 @@ public class NetworkManager: MonoBehaviour{
 	
 	void Start(){
 		refreshing = false;
+		keep = false;
+
 		buttonX = (float) (Screen.width * .05);
 		buttonY = (float) (Screen.width * .05);
 		buttonW = (float) (Screen.width * .1);
@@ -36,6 +46,7 @@ public class NetworkManager: MonoBehaviour{
 				refreshing = false;
 				Debug.Log(MasterServer.PollHostList().Length);
 				hostData = MasterServer.PollHostList();
+				nameOfGame = GUI.TextField(new Rect(10, 10, 100, 20), nameOfGame);
 			}
 		}
 	}
@@ -43,7 +54,7 @@ public class NetworkManager: MonoBehaviour{
 	void startServer(){
 		Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
 		//Wizards is what all games will be called, planning to change this to a field entered by a user
-		MasterServer.RegisterHost(gameName, "Wizards", "");
+		MasterServer.RegisterHost(gameName, nameOfGame, "");
 	}
 	
 	void refreshHostList(){
@@ -81,11 +92,18 @@ public class NetworkManager: MonoBehaviour{
 	
 	//GUIs
 	void OnGUI(){
+		
+		
 		//only display the buttons when the player is not in a game already
-		if(!Network.isClient && !Network.isServer){
+		if(!Network.isClient && !Network.isServer && !keep){
 			if(GUI.Button(new Rect(buttonX, buttonY, buttonW, buttonH), "Start Server")){
 				Debug.Log("Starting Server");
-				startServer();
+				keep = true;
+				if(keep){
+				Debug.Log("Drawing the text field");
+					
+				
+				}
 			}
 			
 			if(GUI.Button(new Rect(buttonX, (float)(buttonY * 1.2 + buttonH), buttonW, buttonH), "Refresh Hosts")){
@@ -97,6 +115,14 @@ public class NetworkManager: MonoBehaviour{
 						Network.Connect(hostData[i]);
 					}
 				}
+			}
+		}
+		if(keep && !Network.isServer){
+			
+			nameOfGame = GUI.TextField(new Rect(Screen.width / 2-50, Screen.height / 2-150, 300, 50), nameOfGame);	
+			if(GUI.Button(new Rect(Screen.width/2, Screen.height/2 - 100, 150, 150), "PRESS TO START")){
+			
+				startServer();
 			}
 		}
 	}
